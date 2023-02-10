@@ -7,7 +7,6 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Categories\Infrastruct
 
 final class CategoriesSubservice implements GetCategoriesInterface
 {
-
     #[RegisterAction(GetCategoriesInterface::class)]
     public function getCategories(): array
     {
