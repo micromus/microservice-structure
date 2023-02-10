@@ -43,8 +43,7 @@ final class ServiceConfigurator
 
     public function __construct(
         protected string $servicePath
-    ) {
-    }
+    ) {}
 
     /**
      * @return array

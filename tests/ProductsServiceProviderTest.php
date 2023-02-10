@@ -6,7 +6,9 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\E
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\Exceptions\NotAllowedTestingException;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\Listeners\WorkWhenProductCreatedListener;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Domain\Subservices\Sub\AnnotationProductsSubservice;
+use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Domain\Subservices\Sub\AnnotationTestingSubservice;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Contracts\AnnotationProductInterface;
+use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Contracts\AnnotationProductWithTestingInterface;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Contracts\CreateProductInterface;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\DataTransferObjects\ProductData;
 use function Pest\Laravel\get;
@@ -19,6 +21,11 @@ it('get replace subservice into testing subservices', function () {
 it('register service by annotations', function () {
     expect(app(AnnotationProductInterface::class))
         ->toBeInstanceOf(AnnotationProductsSubservice::class);
+});
+
+it('register testing subservice when running tests', function () {
+    expect(app(AnnotationProductWithTestingInterface::class))
+        ->toBeInstanceOf(AnnotationTestingSubservice::class);
 });
 
 it('check apply service migrations', function () {
