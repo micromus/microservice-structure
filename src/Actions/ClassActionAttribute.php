@@ -22,13 +22,22 @@ final class ClassActionAttribute
      */
     public function actions(): array
     {
-        $actions = [];
+        $actions = [
+            'default' => [],
+            'testing' => [],
+        ];
 
         foreach ($this->class->getMethods() as $method) {
             $attributes = $method->getAttributes(RegisterAction::class);
 
             foreach ($attributes as $attribute) {
-                $actions[$attribute->newInstance()->interfaceClass] = $this->class->name;
+                /** @var RegisterAction $instanceAttribute */
+                $instanceAttribute = $attribute->newInstance();
+                $actions['default'][$instanceAttribute->interfaceClass] = $this->class->name;
+
+                if ($instanceAttribute->testingClass) {
+                    $actions['testing'][$instanceAttribute->interfaceClass] = $instanceAttribute->testingClass;
+                }
             }
         }
 

@@ -21,6 +21,10 @@ abstract class AbstractServiceProvider extends ServiceProvider
      */
     private string $servicePath;
 
+    private array $actions = [];
+
+    private array $testingActions = [];
+
     /**
      * @param $app
      * @return void
@@ -42,12 +46,18 @@ abstract class AbstractServiceProvider extends ServiceProvider
         $this->serviceConfigurator = $this->createConfiguration();
         $this->configureService($this->serviceConfigurator);
 
+        $this->actions = $this->serviceConfigurator
+            ->getSubServices();
+
+        $this->testingActions = $this->serviceConfigurator
+            ->getTestingSubService();
+
         $this->registerAnnotationsSubservices();
 
-        $this->registerActions($this->serviceConfigurator->getSubServices());
+        $this->registerActions($this->actions);
 
         if ($this->app->runningUnitTests()) {
-            $this->registerActions($this->serviceConfigurator->getTestingSubService());
+            $this->registerActions($this->testingActions);
         }
     }
 
@@ -131,7 +141,10 @@ abstract class AbstractServiceProvider extends ServiceProvider
      */
     private function getSubservicesPath(): string
     {
-        return $this->servicePath.DIRECTORY_SEPARATOR.'Domain'.DIRECTORY_SEPARATOR.'Subservices';
+        $subserviceNamespace = $this->serviceConfigurator->getSubserviceNamespace();
+        $directory = Str::replace('\\', DIRECTORY_SEPARATOR, $subserviceNamespace);
+
+        return $this->servicePath.DIRECTORY_SEPARATOR.$directory;
     }
 
     /**
@@ -147,7 +160,7 @@ abstract class AbstractServiceProvider extends ServiceProvider
      */
     private function getSubservicesNamespace(): string
     {
-        return $this->getRootNamespace().'\\Domain\\Subservices';
+        return $this->getRootNamespace().'\\'.$this->serviceConfigurator->getSubserviceNamespace();
     }
 
     /**
@@ -166,7 +179,8 @@ abstract class AbstractServiceProvider extends ServiceProvider
             config()
                 ->set("microservice-structure.actions.$rootNamespace", $actions);
 
-            $this->registerActions($actions);
+            $this->actions = array_merge($this->actions, $actions['default'] ?? []);
+            $this->testingActions = array_merge($this->testingActions, $actions['testing'] ?? []);
         }
     }
 

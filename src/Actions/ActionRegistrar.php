@@ -26,7 +26,10 @@ final class ActionRegistrar
      */
     public function actions(): array
     {
-        $actions = [];
+        $actions = [
+            'default' => [],
+            'testing' => [],
+        ];
 
         $files = (new Finder())
             ->files()
@@ -35,8 +38,11 @@ final class ActionRegistrar
             ->sortByName();
 
         foreach ($files as $file) {
-            $class = $this->getClassByPath($file->getPath().DIRECTORY_SEPARATOR.$file->getFilename());
-            $actions = array_merge($actions, ClassActionAttribute::getActionsByClass($class));
+            $subserviceClass = $this->getClassByPath($file->getPath().DIRECTORY_SEPARATOR.$file->getFilename());
+            $subserviceActions = ClassActionAttribute::getActionsByClass($subserviceClass);
+
+            $actions['default'] = array_merge($actions['default'], $subserviceActions['default'] ?? []);
+            $actions['testing'] = array_merge($actions['testing'], $subserviceActions['testing'] ?? []);
         }
 
         return $actions;
