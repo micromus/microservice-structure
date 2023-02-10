@@ -28,7 +28,7 @@ final class ActionRegistrar
     {
         $actions = [
             'default' => [],
-            'testing' => []
+            'testing' => [],
         ];
 
         $files = (new Finder())

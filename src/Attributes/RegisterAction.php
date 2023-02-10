@@ -10,5 +10,6 @@ final class RegisterAction
     public function __construct(
         public string $interfaceClass,
         public ?string $testingClass = null
-    ) {}
+    ) {
+    }
 }

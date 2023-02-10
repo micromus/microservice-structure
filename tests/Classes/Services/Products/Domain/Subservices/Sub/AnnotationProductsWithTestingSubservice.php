@@ -9,5 +9,6 @@ final class AnnotationProductsWithTestingSubservice implements AnnotationProduct
 {
     #[RegisterAction(AnnotationProductWithTestingInterface::class, AnnotationTestingSubservice::class)]
     public function annotationProductWithTesting(): void
-    {}
+    {
+    }
 }

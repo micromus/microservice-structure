@@ -7,5 +7,6 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructur
 final class AnnotationTestingSubservice implements AnnotationProductWithTestingInterface
 {
     public function annotationProductWithTesting(): void
-    {}
+    {
+    }
 }

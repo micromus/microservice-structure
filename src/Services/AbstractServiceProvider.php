@@ -141,7 +141,10 @@ abstract class AbstractServiceProvider extends ServiceProvider
      */
     private function getSubservicesPath(): string
     {
-        return $this->servicePath.DIRECTORY_SEPARATOR.'Domain'.DIRECTORY_SEPARATOR.'Subservices';
+        $subserviceNamespace = $this->serviceConfigurator->getSubserviceNamespace();
+        $directory = Str::replace('\\', DIRECTORY_SEPARATOR, $subserviceNamespace);
+
+        return $this->servicePath.DIRECTORY_SEPARATOR.$directory;
     }
 
     /**
@@ -157,7 +160,7 @@ abstract class AbstractServiceProvider extends ServiceProvider
      */
     private function getSubservicesNamespace(): string
     {
-        return $this->getRootNamespace().'\\Domain\\Subservices';
+        return $this->getRootNamespace().'\\'.$this->serviceConfigurator->getSubserviceNamespace();
     }
 
     /**

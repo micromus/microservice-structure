@@ -17,6 +17,11 @@ final class ServiceConfigurator
     protected array $testingSubService = [];
 
     /**
+     * @var string
+     */
+    protected string $subserviceNamespace = 'Domain\\Subservices';
+
+    /**
      * @var array
      */
     protected array $listeners = [];
@@ -43,7 +48,8 @@ final class ServiceConfigurator
 
     public function __construct(
         protected string $servicePath
-    ) {}
+    ) {
+    }
 
     /**
      * @return array
@@ -59,6 +65,14 @@ final class ServiceConfigurator
     public function getTestingSubService(): array
     {
         return $this->testingSubService;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubserviceNamespace(): string
+    {
+        return $this->subserviceNamespace;
     }
 
     /**
@@ -107,6 +121,17 @@ final class ServiceConfigurator
     public function getConfig(): ?string
     {
         return $this->config;
+    }
+
+    /**
+     * @param  string  $subserviceNamespace
+     * @return ServiceConfigurator
+     */
+    public function setSubserviceNamespace(string $subserviceNamespace = 'Domain\\Subservices'): ServiceConfigurator
+    {
+        $this->subserviceNamespace = $subserviceNamespace;
+
+        return $this;
     }
 
     /**

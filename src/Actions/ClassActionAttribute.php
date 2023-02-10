@@ -24,7 +24,7 @@ final class ClassActionAttribute
     {
         $actions = [
             'default' => [],
-            'testing' => []
+            'testing' => [],
         ];
 
         foreach ($this->class->getMethods() as $method) {
