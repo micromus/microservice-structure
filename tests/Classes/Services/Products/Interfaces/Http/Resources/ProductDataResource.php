@@ -13,9 +13,6 @@ final class ProductDataResource extends JsonResource
      */
     public $resource;
 
-    /**
-     * @param  ProductData  $resource
-     */
     public function __construct(ProductData $resource)
     {
         parent::__construct($resource);
@@ -23,7 +20,6 @@ final class ProductDataResource extends JsonResource
 
     /**
      * @param  Request  $request
-     * @return array
      */
     public function toArray($request): array
     {

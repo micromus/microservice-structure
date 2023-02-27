@@ -9,9 +9,6 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructur
 final class CreateProductsTestSubservice implements CreateProductInterface
 {
     /**
-     * @param  ProductData  $productData
-     * @return ProductData
-     *
      * @throws NotAllowedTestingException
      */
     public function createProduct(ProductData $productData): ProductData

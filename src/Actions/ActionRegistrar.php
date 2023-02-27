@@ -9,8 +9,6 @@ use Symfony\Component\Finder\Finder;
 final class ActionRegistrar
 {
     /**
-     * @param  string  $rootNamespace
-     * @param  string  $subservicesPath
      * @return void
      */
     public function __construct(
@@ -48,10 +46,6 @@ final class ActionRegistrar
         return $actions;
     }
 
-    /**
-     * @param  string  $path
-     * @return string
-     */
     private function getClassByPath(string $path): string
     {
         $class = Str::of($path)
@@ -63,10 +57,6 @@ final class ActionRegistrar
     }
 
     /**
-     * @param  string  $rootNamespace
-     * @param  string  $subservicesPath
-     * @return array
-     *
      * @throws ReflectionException
      */
     public static function getActionsByService(string $rootNamespace, string $subservicesPath): array

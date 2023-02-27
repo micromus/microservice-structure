@@ -9,7 +9,6 @@ use ReflectionException;
 final class ClassActionAttribute
 {
     /**
-     * @param  ReflectionClass  $class
      * @return void
      */
     public function __construct(
@@ -45,7 +44,6 @@ final class ClassActionAttribute
     }
 
     /**
-     * @param  string  $class
      * @return array<class-string, class-string>
      *
      * @throws ReflectionException

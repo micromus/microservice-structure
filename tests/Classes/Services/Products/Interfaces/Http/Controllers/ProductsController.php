@@ -8,11 +8,6 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Interfaces\Ht
 
 final class ProductsController
 {
-    /**
-     * @param  GetProductByIdInterface  $subservice
-     * @param  int  $productId
-     * @return JsonResource
-     */
     public function get(GetProductByIdInterface $subservice, int $productId): JsonResource
     {
         return new ProductDataResource($subservice->getProductById($productId));

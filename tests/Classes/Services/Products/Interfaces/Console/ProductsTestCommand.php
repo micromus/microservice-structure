@@ -11,9 +11,6 @@ final class ProductsTestCommand extends Command
      */
     protected $signature = 'products:test';
 
-    /**
-     * @return int
-     */
     public function handle(): int
     {
         return self::SUCCESS;

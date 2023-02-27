@@ -6,9 +6,5 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructur
 
 interface GetProductByIdInterface
 {
-    /**
-     * @param  int  $productId
-     * @return ProductData
-     */
     public function getProductById(int $productId): ProductData;
 }

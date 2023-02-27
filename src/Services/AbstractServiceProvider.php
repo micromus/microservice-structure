@@ -11,14 +11,8 @@ use ReflectionException;
 
 abstract class AbstractServiceProvider extends ServiceProvider
 {
-    /**
-     * @var ServiceConfigurator
-     */
     private ServiceConfigurator $serviceConfigurator;
 
-    /**
-     * @var string
-     */
     private string $servicePath;
 
     private array $actions = [];
@@ -26,7 +20,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
     private array $testingActions = [];
 
     /**
-     * @param $app
      * @return void
      */
     public function __construct($app)
@@ -37,8 +30,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
     }
 
     /**
-     * @return void
-     *
      * @throws ReflectionException
      */
     public function register(): void
@@ -61,9 +52,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @return void
-     */
     public function boot(): void
     {
         if ($this->serviceConfigurator->getMigrationsNamespace() !== null) {
@@ -88,24 +76,13 @@ abstract class AbstractServiceProvider extends ServiceProvider
         $this->registerListeners($this->serviceConfigurator->getListeners());
     }
 
-    /**
-     * @return ServiceConfigurator
-     */
     private function createConfiguration(): ServiceConfigurator
     {
         return new ServiceConfigurator($this->servicePath);
     }
 
-    /**
-     * @param  ServiceConfigurator  $serviceConfigurator
-     * @return void
-     */
     abstract protected function configureService(ServiceConfigurator $serviceConfigurator): void;
 
-    /**
-     * @param  array  $actions
-     * @return void
-     */
     private function registerActions(array $actions): void
     {
         foreach ($actions as $contract => $subService) {
@@ -113,10 +90,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @param  array  $configureListeners
-     * @return void
-     */
     private function registerListeners(array $configureListeners): void
     {
         foreach ($configureListeners as $event => $listeners) {
@@ -126,9 +99,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * @return string
-     */
     private function getServicePath(): string
     {
         $reflector = new ReflectionClass(get_class($this));
@@ -136,9 +106,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
         return dirname($reflector->getFileName());
     }
 
-    /**
-     * @return string
-     */
     private function getSubservicesPath(): string
     {
         $subserviceNamespace = $this->serviceConfigurator->getSubserviceNamespace();
@@ -147,25 +114,17 @@ abstract class AbstractServiceProvider extends ServiceProvider
         return $this->servicePath.DIRECTORY_SEPARATOR.$directory;
     }
 
-    /**
-     * @return string
-     */
     private function getRootNamespace(): string
     {
         return Str::replaceLast('\\'.class_basename($this), '', get_class($this));
     }
 
-    /**
-     * @return string
-     */
     private function getSubservicesNamespace(): string
     {
         return $this->getRootNamespace().'\\'.$this->serviceConfigurator->getSubserviceNamespace();
     }
 
     /**
-     * @return void
-     *
      * @throws ReflectionException
      */
     private function registerAnnotationsSubservices(): void
@@ -185,8 +144,6 @@ abstract class AbstractServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param  string  $rootNamespace
-     * @param  string  $subservicesPath
      * @return array<class-string, class-string>
      *
      * @throws ReflectionException

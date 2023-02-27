@@ -14,9 +14,6 @@ use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Interfaces\Ev
 
 final class ProductsServiceProvider extends AbstractServiceProvider
 {
-    /**
-     * @var array
-     */
     protected array $subServices = [
         CreateProductInterface::class => [
             ProductsSubservice::class,
@@ -26,9 +23,6 @@ final class ProductsServiceProvider extends AbstractServiceProvider
         GetProductByIdInterface::class => ProductsSubservice::class,
     ];
 
-    /**
-     * @var array
-     */
     protected array $listeners = [
         ProductCreatedEvent::class => [
             WorkWhenProductCreatedListener::class,
@@ -42,10 +36,6 @@ final class ProductsServiceProvider extends AbstractServiceProvider
         ProductsTestCommand::class,
     ];
 
-    /**
-     * @param  ServiceConfigurator  $serviceConfigurator
-     * @return void
-     */
     protected function configureService(ServiceConfigurator $serviceConfigurator): void
     {
         $serviceConfigurator

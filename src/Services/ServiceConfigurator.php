@@ -16,34 +16,16 @@ final class ServiceConfigurator
      */
     protected array $testingSubService = [];
 
-    /**
-     * @var string
-     */
     protected string $subserviceNamespace = 'Domain\\Subservices';
 
-    /**
-     * @var array
-     */
     protected array $listeners = [];
 
-    /**
-     * @var array
-     */
     protected array $commands = [];
 
-    /**
-     * @var string|null
-     */
     protected string|null $migrationsNamespace = null;
 
-    /**
-     * @var string|null
-     */
     protected string|null $routerFile = null;
 
-    /**
-     * @var string|null
-     */
     protected string|null $config = null;
 
     public function __construct(
@@ -51,82 +33,51 @@ final class ServiceConfigurator
     ) {
     }
 
-    /**
-     * @return array
-     */
     public function getSubServices(): array
     {
         return $this->subServices;
     }
 
-    /**
-     * @return array
-     */
     public function getTestingSubService(): array
     {
         return $this->testingSubService;
     }
 
-    /**
-     * @return string
-     */
     public function getSubserviceNamespace(): string
     {
         return $this->subserviceNamespace;
     }
 
-    /**
-     * @return array
-     */
     public function getListeners(): array
     {
         return $this->listeners;
     }
 
-    /**
-     * @return array
-     */
     public function getCommands(): array
     {
         return $this->commands;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMigrationsNamespace(): ?string
     {
         return $this->migrationsNamespace;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRouterFile(): ?string
     {
         return $this->routerFile;
     }
 
-    /**
-     * @return string
-     */
     public function getConfigFile(): string
     {
         return $this->servicePath.DIRECTORY_SEPARATOR.'Domain'.DIRECTORY_SEPARATOR.'config.php';
     }
 
-    /**
-     * @return string|null
-     */
     public function getConfig(): ?string
     {
         return $this->config;
     }
 
-    /**
-     * @param  string  $subserviceNamespace
-     * @return ServiceConfigurator
-     */
     public function setSubserviceNamespace(string $subserviceNamespace = 'Domain\\Subservices'): ServiceConfigurator
     {
         $this->subserviceNamespace = $subserviceNamespace;
@@ -135,7 +86,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  array  $subServices
      * @return $this
      */
     public function usingSubservices(array $subServices): self
@@ -153,7 +103,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  array  $listeners
      * @return $this
      */
     public function usingListeners(array $listeners): self
@@ -164,7 +113,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  array  $commands
      * @return $this
      */
     public function usingCommands(array $commands): self
@@ -175,7 +123,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  string  $namespace
      * @return $this
      */
     public function usingMigrations(string $namespace = 'Application/Database/Migrations'): self
@@ -202,7 +149,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  string  $serviceName
      * @return $this
      */
     public function usingConfig(string $serviceName): self
@@ -213,9 +159,6 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  string  $contract
-     * @param  string  $subService
-     * @param  string|null  $testSubService
      * @return $this
      */
     protected function addSubservice(string $contract, string $subService, string $testSubService = null): self
