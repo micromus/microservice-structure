@@ -1,6 +1,6 @@
 <?php
 
-namespace Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\Events;
+namespace Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Events;
 
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\DataTransferObjects\ProductData;
 

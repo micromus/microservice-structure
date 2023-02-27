@@ -4,13 +4,13 @@ namespace Micromus\MicroserviceStructure\Tests\Classes\Services\Products;
 
 use Micromus\MicroserviceStructure\Services\AbstractServiceProvider;
 use Micromus\MicroserviceStructure\Services\ServiceConfigurator;
-use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\Events\ProductCreatedEvent;
-use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Application\Listeners\WorkWhenProductCreatedListener;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Domain\Subservices\CreateProductsTestSubservice;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Domain\Subservices\ProductsSubservice;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Contracts\CreateProductInterface;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Contracts\GetProductByIdInterface;
+use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Infrastructure\Events\ProductCreatedEvent;
 use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Interfaces\Console\ProductsTestCommand;
+use Micromus\MicroserviceStructure\Tests\Classes\Services\Products\Interfaces\Events\Listeners\WorkWhenProductCreatedListener;
 
 final class ProductsServiceProvider extends AbstractServiceProvider
 {

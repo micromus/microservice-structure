@@ -112,7 +112,7 @@ final class ServiceConfigurator
      */
     public function getConfigFile(): string
     {
-        return $this->servicePath.DIRECTORY_SEPARATOR.'config.php';
+        return $this->servicePath.DIRECTORY_SEPARATOR.'Domain'.DIRECTORY_SEPARATOR.'config.php';
     }
 
     /**
@@ -186,12 +186,17 @@ final class ServiceConfigurator
     }
 
     /**
-     * @param  string  $file
      * @return $this
      */
-    public function usingRoutes(string $file = 'routes.php'): self
+    public function usingRoutes(): self
     {
-        $this->routerFile = $this->servicePath.DIRECTORY_SEPARATOR.$file;
+        $this->routerFile = $this->servicePath
+            .DIRECTORY_SEPARATOR
+            .'Interfaces'
+            .DIRECTORY_SEPARATOR
+            .'Http'
+            .DIRECTORY_SEPARATOR
+            .'routes.php';
 
         return $this;
     }
