@@ -2,6 +2,10 @@
 
 All notable changes to `microservice-structure` will be documented in this file.
 
+## v2.1.0 - 2023-04-21
+
+- Обновление до версии Laravel 10
+
 ## v2.0.0 - 2023-02-27
 
 - Изменены пути к config.php и routes.php
